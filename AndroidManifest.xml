@@ -52,9 +52,6 @@
         <activity
             android:name=".activities.CreateGameActivity"
             android:label="@string/title_activity_create_game" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.chakwak.tarotscoreboard.activities.MainActivity" />
         </activity>
     </application>
 

@@ -54,20 +54,20 @@ public class CreateGameActivity extends ActionBarActivity {
 		
 		Spinner takerSelect = (Spinner)findViewById(R.id.spinner_game_create_taker);
 		takerSelect.setAdapter(new SimpleCursorAdapter(
-				this, android.R.layout.simple_spinner_item, cursorPlayers, from, to));
+				this, R.layout.spinner_padded, cursorPlayers, from, to));
 		
 		Spinner priseSelect = (Spinner)findViewById(R.id.spinner_game_create_prise);
-		priseSelect.setAdapter(new ArrayAdapter<Prise>(this, android.R.layout.simple_spinner_item, Prise.values()));
+		priseSelect.setAdapter(new ArrayAdapter<Prise>(this, R.layout.spinner_padded, Prise.values()));
 		
 		Spinner appelSelect = (Spinner)findViewById(R.id.spinner_game_create_appel);
-		appelSelect.setAdapter(new ArrayAdapter<Appel>(this, android.R.layout.simple_spinner_item, Appel.values()));
+		appelSelect.setAdapter(new ArrayAdapter<Appel>(this, R.layout.spinner_padded, Appel.values()));
 		
 		Spinner associateSelect = (Spinner)findViewById(R.id.spinner_game_create_associate);
 		associateSelect.setAdapter(new SimpleCursorAdapter(
-				this, android.R.layout.simple_spinner_item, cursorPlayers, from, to));
+				this, R.layout.spinner_padded, cursorPlayers, from, to));
 		
 		Spinner resultSelect = (Spinner)findViewById(R.id.spinner_game_create_result);
-		resultSelect.setAdapter(ArrayAdapter.createFromResource(this, R.array.string_array_result, android.R.layout.simple_spinner_item));
+		resultSelect.setAdapter(ArrayAdapter.createFromResource(this, R.array.string_array_result, R.layout.spinner_padded));
 		
 		selectPlayersButton = (Button)findViewById(R.id.button_select_players);
 		
