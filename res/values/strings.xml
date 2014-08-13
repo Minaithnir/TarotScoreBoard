@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Tarot Score Board</string>
+    <string name="tab_players_name">Joueurs</string>
+    <string name="tab_events_name">Rencontres</string>
+    <string name="action_add_player">Creer joueur</string>
+    
+    <string name="title_activity_add_player">Ajouter un joueur</string>
+    <string name="new_player_text">Nom : </string>
+    <string name="new_player_edit">Entrez le nom</string>
+    <string name="new_player_button">Créer joueur</string>
+    
+    <string name="event_list_button">Nouvelle rencontre</string>
+    <string name="title_activity_create_event">Créer une rencontre</string>
+    <string name="text_event_creation_location">Lieu : </string>
+    <string name="hint_event_creation_location">Lieu</string>
+    <string name="text_event_creation_players">Joueurs</string>
+    <string name="button_event_creation">Valider</string>
+    
+    <string name="title_activity_event_board">Résumé de rencontre</string>
+    <string name="action_add_game">Ajouter une partie</string>
+    
+    <string name="title_activity_create_game">Ajouter une partie</string>
+    <string name="text_game_create_taker">Preneur :</string>
+    <string name="prompt_game_create_taker">Choisissez le Preneur</string>
+    <string name="text_game_create_prise">Prise :</string>
+    <string name="prompt_game_create_prise">Choississez la Prise</string>
+    <string name="text_game_create_appel">Appel :</string>
+    <string name="prompt_game_create_appel">Choississez l\'appel</string>
+    <string name="text_game_create_associate">Appelé :</string>
+    <string name="prompt_game_create_associate">Choississez l\'appelé</string>
+    <string name="text_game_create_validated">Faite :</string>
+    <string name="text_game_create_result">Différence :</string>
+    <string name="prompt_game_create_result">Choississez le résultat</string>
+    <string name="text_game_create_players">Joueurs :</string>
+    <string name="dialog_select_players">Choississez les joueurs</string>
+    <string name="no_selected_players">Pas de joueur selectionné</string>
+    <string name="button_game_create_send">Valider</string>
+
+</resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="PETITE">Petite</string>
+    <string name="POUSSE">Pousse</string>
+    <string name="GARDE">Garde</string>
+    <string name="GARDE_SANS">Garde sans</string>
+    <string name="GARDE_CONTRE">Garde contre</string>
+</resources>

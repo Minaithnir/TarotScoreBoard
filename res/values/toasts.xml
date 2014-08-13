@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="toast_add_player_empty">Vous devez rentrer un nom de joueur.</string>
+    <string name="toast_not_enough_player">Vous devez selectionner au moins 3 joueurs.</string>
+    <string name="toast_too_many_players">Vous devez selectionner 5 joueurs au plus.</string>
+    <string name="toast_name_exist">le nom %s existe déjà, merci d\'en choisir un autre.</string>
+    <string name="toast_location_empty">Vous devez rentrer un lieu.</string>
+    <string name="toast_need_appel">Un appel est attendu avec 5 joueurs.</string>
+    <string name="toast_taker_player">Le Preneur doit être un joueur.</string>
+    <string name="toast_associate_player">L\'Appelé doit être un joueur.</string>
+</resources>

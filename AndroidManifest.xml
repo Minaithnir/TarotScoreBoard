@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.chakwak.tarotscoreboard"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="7"
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".activities.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chakwak.tarotscoreboard.activities.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activities.AddPlayerActivity"
+            android:label="@string/title_activity_add_player" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chakwak.tarotscoreboard.activities.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activities.CreateEventActivity"
+            android:label="@string/title_activity_create_event" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chakwak.tarotscoreboard.activities.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activities.EventBoardActivity"
+            android:label="@string/title_activity_event_board" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chakwak.tarotscoreboard.activities.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activities.CreateGameActivity"
+            android:label="@string/title_activity_create_game" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chakwak.tarotscoreboard.activities.MainActivity" />
+        </activity>
+    </application>
+
+</manifest>

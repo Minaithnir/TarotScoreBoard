@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="head_odd">#B0B0B0</color>
+    <color name="head_pair">#BFBFBF</color>
+    <color name="odd_odd">#D0D0D0</color>
+    <color name="odd_pair">#DDDDDD</color>
+    <color name="pair_odd">#DDDDDD</color>
+    <color name="pair_pair">#D0D0D0</color>
+</resources>
