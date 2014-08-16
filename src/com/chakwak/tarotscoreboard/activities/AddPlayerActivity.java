@@ -54,6 +54,7 @@ public class AddPlayerActivity extends ActionBarActivity {
 				
 				// Create the intent and redirect the user to the main screen
 				Intent intent = new Intent(this, MainActivity.class);
+				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				intent.putExtra(PLAYER_CREATED, playerName);
 				startActivity(intent);
 			}

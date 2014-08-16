@@ -13,8 +13,11 @@ import com.chakwak.tarotscoreboard.fragments.PlayersListFragment;
 
 public class MainActivity extends ActionBarActivity implements ActionBar.TabListener {
 	
+	static final String KEY_SAVEOPENEDTAB = "com.chakwak.tarotscoreboard.mainactivity.KEY_SAVEOPENEDTAB";
+	
 	private PlayersListFragment plf = null;
 	private EventsListFragment elf = null;
+	private int selectedTab = 0;
 	
 	
     @Override
@@ -30,7 +33,32 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         bar.setDisplayShowTitleEnabled(false);
         bar.setDisplayShowHomeEnabled(false);
+        
+        if(savedInstanceState != null) {
+			selectedTab = savedInstanceState.getInt(KEY_SAVEOPENEDTAB);
+			bar.selectTab(bar.getTabAt(selectedTab));
+        } else if(getIntent().getStringExtra(AddPlayerActivity.PLAYER_CREATED) != null) {
+        	bar.selectTab(bar.getTabAt(1));
+        }
     }
+	
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		outState.putInt(KEY_SAVEOPENEDTAB, getSupportActionBar().getSelectedTab().getPosition());
+		super.onSaveInstanceState(outState);
+	}
+	
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		if(savedInstanceState.containsKey(KEY_SAVEOPENEDTAB))
+		{
+	        ActionBar bar = getSupportActionBar();
+			selectedTab = savedInstanceState.getInt(KEY_SAVEOPENEDTAB);
+			bar.selectTab(bar.getTabAt(selectedTab));
+		}
+		super.onRestoreInstanceState(savedInstanceState);
+	}
     
 	@Override
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
@@ -45,7 +73,6 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 				plf = new PlayersListFragment();
 			}
 			ft.replace(R.id.main_container, plf);
-			
 		}
 	}
 

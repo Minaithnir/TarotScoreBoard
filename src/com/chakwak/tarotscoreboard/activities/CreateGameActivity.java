@@ -193,6 +193,7 @@ public class CreateGameActivity extends ActionBarActivity {
 			
 			//Redirect vers l'activité de détail d'une rencontre
 			Intent intent = new Intent(this, EventBoardActivity.class);
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			intent.putExtra(EventBoardActivity.EVENT_BOARD_ID, eventId.toString());
 			startActivity(intent);
 		}
