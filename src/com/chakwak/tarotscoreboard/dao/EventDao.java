@@ -35,6 +35,8 @@ public class EventDao {
 	}
 	
 	public static void deleteEvent(Context context, Integer eventId) {
+		GameDao.deleteRelatedGames(context, eventId);
+		
     	SQLiteDatabase db = ScoreBoardDbHelper.getReadDb(context);
     	
     	String where = Event.COLUMN_NAME_EVENT_ID + " = ?";

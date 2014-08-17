@@ -82,7 +82,6 @@ public class EventsListFragment extends Fragment {
 				return false;
 			}
 		});
-    	
 
     	listView.setOnItemLongClickListener(new OnItemLongClickListener() {
 
