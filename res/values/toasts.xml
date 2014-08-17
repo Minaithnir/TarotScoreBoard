@@ -8,4 +8,5 @@
     <string name="toast_need_appel">Un appel est attendu avec 5 joueurs.</string>
     <string name="toast_taker_player">Le Preneur doit être un joueur.</string>
     <string name="toast_associate_player">L\'Appelé doit être un joueur.</string>
+    <string name="toast_cant_suppress_player">Vous ne pouvez supprimer un joueur participant à au moins une partie</string>
 </resources>

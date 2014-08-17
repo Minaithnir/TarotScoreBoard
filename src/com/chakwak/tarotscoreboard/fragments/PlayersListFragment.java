@@ -1,5 +1,7 @@
 package com.chakwak.tarotscoreboard.fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -11,16 +13,22 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.chakwak.tarotscoreboard.R;
 import com.chakwak.tarotscoreboard.ScoreBoardContract;
 import com.chakwak.tarotscoreboard.activities.AddPlayerActivity;
+import com.chakwak.tarotscoreboard.activities.MainActivity;
 import com.chakwak.tarotscoreboard.dao.PlayerDao;
 
 public class PlayersListFragment extends Fragment {
 	
 	private ListView listView = null;
+	
+	private Integer playerId = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,15 +45,68 @@ public class PlayersListFragment extends Fragment {
 		
 		Cursor c = PlayerDao.getAllPlayers(getActivity());
 		
+		String[] from = new String[] {ScoreBoardContract.Player.COLUMN_NAME_PLAYER_NAME,
+									ScoreBoardContract.Player.COLUMN_NAME_PLAYER_ID};
+		int[] to = new int[] {android.R.id.text1, android.R.id.text2};
+		
     	SimpleCursorAdapter adapter = new SimpleCursorAdapter(
-			getActivity(), 
-			android.R.layout.simple_list_item_1, 
-			c, 
-			new String[] {ScoreBoardContract.Player.COLUMN_NAME_PLAYER_NAME}, 
-			new int[] {android.R.id.text1});
+			getActivity(), android.R.layout.simple_list_item_1,	c, from, to) {
+    		
+    		@Override
+    		public View getView(int arg0, View arg1, ViewGroup arg2) {
+    			View view = super.getView(arg0, arg1, arg2);
+    			view.setTag(getCursor().getString(getCursor().getColumnIndex(ScoreBoardContract.Player.COLUMN_NAME_PLAYER_ID)));
+    			return view;
+    		}
+    	};
     	
     	listView = (ListView)root.findViewById(R.id.fragment_players_list);
     	listView.setAdapter(adapter);
+
+    	listView.setOnItemLongClickListener(new OnItemLongClickListener() {
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View view,
+    				int position, long id) {
+				
+				playerId = Integer.valueOf((String)view.getTag());
+				
+				// Instantiate an AlertDialog.Builder with its constructor
+				AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+				// Chain together various setter methods to set the dialog characteristics
+				builder.setMessage(R.string.dialog_message_data_losed)
+				       .setTitle(R.string.dialog_title_delete_player);
+				
+				builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+			           public void onClick(DialogInterface dialog, int id) {
+			        	   	if(PlayerDao.isPlayerInAnyEvent(PlayersListFragment.this.getActivity(), playerId))
+			   					Toast.makeText(PlayersListFragment.this.getActivity(),
+			   							R.string.toast_cant_suppress_player, Toast.LENGTH_SHORT).show();
+			        	   	else
+			        	   		PlayerDao.deletePlayer(PlayersListFragment.this.getActivity(), PlayersListFragment.this.playerId);
+
+			        	   	dialog.dismiss();
+							Intent intent = new Intent(PlayersListFragment.this.getActivity(), MainActivity.class);
+							intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+							intent.putExtra(AddPlayerActivity.PLAYER_CREATED, "player deleted");
+							startActivity(intent);
+			           }
+			       });
+
+				builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+			           public void onClick(DialogInterface dialog, int id) {
+			        	   dialog.cancel();
+			           }
+			       });
+
+				// Get the AlertDialog from create()
+				AlertDialog dialog = builder.create();
+				
+				dialog.show();
+				return false;
+			}
+		});
     	
     	return root;
     }

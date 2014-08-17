@@ -110,4 +110,39 @@ public class PlayerDao {
     	
     	return c;
 	}
+	
+	public static boolean isPlayerInAnyEvent(Context context, Integer playerId) {
+    	SQLiteDatabase db = ScoreBoardDbHelper.getReadDb(context);
+
+    	String[] projection = {
+			PlayerInGame.COLUMN_NAME_PIG_ID
+    	};
+    	
+    	String where = PlayerInGame.COLUMN_NAME_PLAYER_ID + " = ?";
+    	String args[] = {String.valueOf(playerId)};
+    	
+    	Cursor c = db.query(
+    		PlayerInGame.TABLE_NAME, 
+			projection, 
+			where, 
+			args, 
+			null, 
+			null, 
+			null);
+    	
+    	return c.getCount() != 0;
+	}
+	
+	public static void deletePlayer(Context context, Integer playerId) {
+    	SQLiteDatabase db = ScoreBoardDbHelper.getReadDb(context);
+    	
+    	String where = Player.COLUMN_NAME_PLAYER_ID + " = ?";
+    	String args[] = {String.valueOf(playerId)};
+    	
+    	db.delete(
+    		Player.TABLE_NAME, 
+			where, 
+			args);
+    	
+	}
 }

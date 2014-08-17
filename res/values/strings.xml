@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="ok">Confirmer</string>
+    <string name="cancel">Annuler</string>
 
     <string name="app_name">Tarot Score Board</string>
     <string name="tab_players_name">Joueurs</string>
     <string name="tab_events_name">Rencontres</string>
     <string name="action_add_player">Creer joueur</string>
+    
+    <string name="dialog_title_delete_player">Supprimer joueur</string>
+    <string name="dialog_message_data_losed">Vous ne pourrez plus l\'integrer à des parties</string>
     
     <string name="title_activity_add_player">Ajouter un joueur</string>
     <string name="new_player_text">Nom : </string>

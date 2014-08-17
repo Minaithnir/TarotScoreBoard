@@ -8,6 +8,7 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -66,6 +67,15 @@ public class EventsListFragment extends Fragment {
                 startActivity(intent);
             }
         });
+    	
+    	listView.setOnLongClickListener(new OnLongClickListener() {
+			
+			@Override
+			public boolean onLongClick(View view) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+		});
     	
 	    Button button = (Button) root.findViewById(R.id.button_create_event);
 	   
