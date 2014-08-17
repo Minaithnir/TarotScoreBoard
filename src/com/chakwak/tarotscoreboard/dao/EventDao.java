@@ -33,4 +33,17 @@ public class EventDao {
     	
     	return c;
 	}
+	
+	public static void deleteEvent(Context context, Integer eventId) {
+    	SQLiteDatabase db = ScoreBoardDbHelper.getReadDb(context);
+    	
+    	String where = Event.COLUMN_NAME_EVENT_ID + " = ?";
+    	String args[] = {String.valueOf(eventId)};
+    	
+    	db.delete(
+    		Event.TABLE_NAME, 
+			where, 
+			args);
+    	
+	}
 }

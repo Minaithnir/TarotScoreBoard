@@ -16,6 +16,9 @@
     <string name="new_player_edit">Entrez le nom</string>
     <string name="new_player_button">Créer joueur</string>
     
+    <string name="dialog_title_delete_event">Supprimer une rencontre</string>
+    <string name="dialog_message_delete_event">Les données des parties seront perdu à tout jamais</string>
+    
     <string name="event_list_button">Nouvelle rencontre</string>
     <string name="title_activity_create_event">Créer une rencontre</string>
     <string name="text_event_creation_location">Lieu : </string>

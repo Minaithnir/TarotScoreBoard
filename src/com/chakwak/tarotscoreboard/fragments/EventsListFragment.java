@@ -1,5 +1,7 @@
 package com.chakwak.tarotscoreboard.fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -19,11 +22,14 @@ import com.chakwak.tarotscoreboard.R;
 import com.chakwak.tarotscoreboard.ScoreBoardContract.Event;
 import com.chakwak.tarotscoreboard.activities.CreateEventActivity;
 import com.chakwak.tarotscoreboard.activities.EventBoardActivity;
+import com.chakwak.tarotscoreboard.activities.MainActivity;
 import com.chakwak.tarotscoreboard.dao.EventDao;
 
 public class EventsListFragment extends Fragment {
 	
 	private ListView listView = null;
+	
+	private Integer eventId = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,6 +79,47 @@ public class EventsListFragment extends Fragment {
 			@Override
 			public boolean onLongClick(View view) {
 				// TODO Auto-generated method stub
+				return false;
+			}
+		});
+    	
+
+    	listView.setOnItemLongClickListener(new OnItemLongClickListener() {
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View view,
+    				int position, long id) {
+				
+				eventId = Integer.valueOf((String)view.getTag());
+				
+				// Instantiate an AlertDialog.Builder with its constructor
+				AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+				// Chain together various setter methods to set the dialog characteristics
+				builder.setMessage(R.string.dialog_message_delete_event)
+				       .setTitle(R.string.dialog_title_delete_event);
+				
+				builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+			        	   	EventDao.deleteEvent(EventsListFragment.this.getActivity(), EventsListFragment.this.eventId);
+
+			        	   	dialog.dismiss();
+							Intent intent = new Intent(EventsListFragment.this.getActivity(), MainActivity.class);
+							intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+							startActivity(intent);
+			           }
+			       });
+
+				builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+			           public void onClick(DialogInterface dialog, int id) {
+			        	   dialog.cancel();
+			           }
+			       });
+
+				// Get the AlertDialog from create()
+				AlertDialog dialog = builder.create();
+				
+				dialog.show();
 				return false;
 			}
 		});
