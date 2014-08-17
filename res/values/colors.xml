@@ -4,6 +4,7 @@
     <color name="head_pair">#BFBFBF</color>
     <color name="odd_odd">#D0D0D0</color>
     <color name="odd_pair">#DDDDDD</color>
-    <color name="pair_odd">#DDDDDD</color>
-    <color name="pair_pair">#D0D0D0</color>
+    
+    <color name="background_normal">#A0A0A0</color>
+    <color name="background_selected">#0080FF</color>
 </resources>

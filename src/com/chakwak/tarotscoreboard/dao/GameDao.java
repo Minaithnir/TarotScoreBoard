@@ -44,6 +44,18 @@ public class GameDao {
     	return c;
 	}
 	
+	public static void deleteGame(Context context, Integer gameId) {
+    	SQLiteDatabase db = ScoreBoardDbHelper.getReadDb(context);
+    	
+    	String where = Game.COLUMN_NAME_GAME_ID + " = ?";
+    	String args[] = {String.valueOf(gameId)};
+    	
+    	db.delete(
+    		Game.TABLE_NAME, 
+			where, 
+			args);
+	}
+	
 	public static void deleteRelatedGames(Context context, Integer eventId) {
     	SQLiteDatabase db = ScoreBoardDbHelper.getReadDb(context);
     	

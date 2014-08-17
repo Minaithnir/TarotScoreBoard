@@ -29,6 +29,9 @@
     <string name="title_activity_event_board">Résumé de rencontre</string>
     <string name="action_add_game">Ajouter une partie</string>
     
+    <string name="dialog_title_delete_game">Supprimer une partie</string>
+    <string name="dialog_message_delete_game">Les données de la partie seront perdu à tout jamais</string>
+    
     <string name="title_activity_create_game">Ajouter une partie</string>
     <string name="text_game_create_taker">Preneur :</string>
     <string name="prompt_game_create_taker">Choisissez le Preneur</string>

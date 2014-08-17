@@ -2,6 +2,8 @@ package com.chakwak.tarotscoreboard.activities;
 
 import java.util.ArrayList;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -9,6 +11,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnLongClickListener;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -26,6 +30,7 @@ public class EventBoardActivity extends ActionBarActivity {
 	
 	private Long eventId = null;
 	private ArrayList<Player> players = null; 
+	private Integer gameId = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +84,48 @@ public class EventBoardActivity extends ActionBarActivity {
 		while(!c.isAfterLast()) {
 			getLayoutInflater().inflate(R.layout.row_event_board, root, true);
 			row = (TableRow)root.getChildAt(root.getChildCount()-1);
+			row.setTag(String.valueOf(c.getInt(6)));
+			row.setLongClickable(true);
+			
+			row.setOnLongClickListener(new OnLongClickListener() {
+				
+				@Override
+				public boolean onLongClick(View view) {
+					
+					gameId = Integer.valueOf((String)view.getTag());
+					
+					// Instantiate an AlertDialog.Builder with its constructor
+					AlertDialog.Builder builder = new AlertDialog.Builder(EventBoardActivity.this);
+
+					// Chain together various setter methods to set the dialog characteristics
+					builder.setMessage(R.string.dialog_message_delete_game)
+					       .setTitle(R.string.dialog_title_delete_game);
+					
+					builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int id) {
+				        	   	GameDao.deleteGame(EventBoardActivity.this, EventBoardActivity.this.gameId);
+
+				        	   	dialog.dismiss();
+								Intent intent = new Intent(EventBoardActivity.this, EventBoardActivity.class);
+								intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+								intent.putExtra(EventBoardActivity.EVENT_BOARD_ID, EventBoardActivity.this.eventId.toString());
+								startActivity(intent);
+				           }
+				       });
+
+					builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+				           public void onClick(DialogInterface dialog, int id) {
+				        	   dialog.cancel();
+				           }
+				       });
+
+					// Get the AlertDialog from create()
+					AlertDialog dialog = builder.create();
+					
+					dialog.show();
+					return false;
+				}
+			});
 			
 			cAPlayers = PlayerDao.getPlayersInGame(this, Long.valueOf(c.getInt(6)));
 			aPlayers = new Integer[cAPlayers.getCount()];

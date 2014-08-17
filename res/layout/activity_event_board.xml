@@ -1,16 +1,32 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.chakwak.tarotscoreboard.activities.EventBoardActivity"
-    android:stretchColumns="*"
-    android:id="@+id/table_event_board">
+    android:id="@+id/event_board_linear"
+    android:orientation="vertical">
 
-    <TableRow
-        android:id="@+id/row_header_event_board"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#DDDDDD">
-    </TableRow>
+    <TableLayout android:id="@+id/table_event_board_header"
+	    android:stretchColumns="*"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content">
+	    <TableRow
+	        android:id="@+id/row_header_event_board"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:background="#DDDDDD">
+	    </TableRow>
+    </TableLayout>
 
-</TableLayout>
+    <ScrollView 
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="1">
+	    <TableLayout android:id="@+id/table_event_board"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+		    android:stretchColumns="*">
+	    </TableLayout>
+    </ScrollView>
+    
+</LinearLayout>
